@@ -4,7 +4,7 @@
 	let color='blue';
 	const name = `${firstName} ${lastName}`;
 	function changeColor() {
-		color = 'orange';
+		color = color === 'blue'?'orange':'blue';
 	}
 </script>
 
