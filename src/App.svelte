@@ -1,57 +1,29 @@
 <script>
-  const firstName = "Yoric";
-  const lastName = "Mangeart";
-  let color = "blue";
-  const name = `${firstName} ${lastName}`;
-  let users = [
+  import FeedbackList from "./components/FeedbackList.svelte";
+
+  let feedback = [
     {
       id: 1,
-      name: "Bob",
+      rating: 10,
+      text: "Exercitation laboris irure et pariatur dolore deserunt anim.",
     },
     {
       id: 2,
-      name: "Sara",
+      rating: 4,
+      text: "Cupidatat nostrud nulla et eiusmod.",
+    },
+    {
+      id: 3,
+      rating: 6,
+      text: "Eiusmod occaecat irure eu quis ipsum qui in ullamco ipsum dolor amet. Aliqua irure est duis enim non voluptate tempor adipisicing anim esse commodo ipsum id. In ipsum irure qui non voluptate magna mollit sit. In ipsum ut esse cupidatat cillum labore voluptate adipisicing sunt.",
     },
   ];
-  function changeColor() {
-    color = color === "blue" ? "orange" : "blue";
-    users = [
-      ...users,
-      { id: users.length + 1, name: "toto" + (users.length + 1) },
-    ];
-  }
 </script>
 
-<main>
-  <h1 style="color: {color}">Hello {name}!</h1>
-  <p>
-    Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn
-    how to build Svelte apps.
-  </p>
-  <button on:click={changeColor}>click</button>
-  {#each users as user (user.id)}
-    <p>{user.id} - {user.name}</p>
-  {/each}
+<main class="container">
+  <FeedbackList
+    {feedback}
+    on:delete-feedback={(fb) =>
+      (feedback = feedback.filter((e) => e.id !== fb.detail))}
+  />
 </main>
-
-<style>
-  main {
-    text-align: center;
-    padding: 1em;
-    max-width: 240px;
-    margin: 0 auto;
-  }
-
-  h1 {
-    color: #ff3e00;
-    text-transform: uppercase;
-    font-size: 4em;
-    font-weight: 100;
-  }
-
-  @media (min-width: 640px) {
-    main {
-      max-width: none;
-    }
-  }
-</style>
