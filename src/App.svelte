@@ -1,37 +1,57 @@
 <script>
-	const firstName='Yoric';
-	const lastName='Mangeart';
-	let color='blue';
-	const name = `${firstName} ${lastName}`;
-	function changeColor() {
-		color = color === 'blue'?'orange':'blue';
-	}
+  const firstName = "Yoric";
+  const lastName = "Mangeart";
+  let color = "blue";
+  const name = `${firstName} ${lastName}`;
+  let users = [
+    {
+      id: 1,
+      name: "Bob",
+    },
+    {
+      id: 2,
+      name: "Sara",
+    },
+  ];
+  function changeColor() {
+    color = color === "blue" ? "orange" : "blue";
+    users = [
+      ...users,
+      { id: users.length + 1, name: "toto" + (users.length + 1) },
+    ];
+  }
 </script>
 
 <main>
-	<h1 style="color: {color}">Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
-	<button on:click={changeColor}>click</button>
+  <h1 style="color: {color}">Hello {name}!</h1>
+  <p>
+    Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn
+    how to build Svelte apps.
+  </p>
+  <button on:click={changeColor}>click</button>
+  {#each users as user (user.id)}
+    <p>{user.id} - {user.name}</p>
+  {/each}
 </main>
 
 <style>
-	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
-	}
+  main {
+    text-align: center;
+    padding: 1em;
+    max-width: 240px;
+    margin: 0 auto;
+  }
 
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-	}
+  h1 {
+    color: #ff3e00;
+    text-transform: uppercase;
+    font-size: 4em;
+    font-weight: 100;
+  }
 
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
-	}
+  @media (min-width: 640px) {
+    main {
+      max-width: none;
+    }
+  }
 </style>
