@@ -1,5 +1,7 @@
 <script>
-	let name='Yoric';
+	const firstName='Yoric';
+	const lastName='Mangeart';
+	const name = `${firstName} ${lastName}`;
 </script>
 
 <main>
